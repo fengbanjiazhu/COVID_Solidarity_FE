@@ -2,58 +2,91 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
+import { cn } from "@/lib/utils";
+import { useContext } from "react";
+import { AppContext } from "@/context/AppContext";
+import { IoSettingsSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 const linkStyle = navigationMenuTriggerStyle();
 
+const links = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "About",
+    href: "/about",
+  },
+  {
+    label: "News",
+    href: "/news",
+  },
+  {
+    label: "Venues",
+    href: "/venues",
+  },
+  {
+    label: "Resources",
+    href: "/resources",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+  },
+];
+
 function Header() {
+  const { loggedIn } = useContext(AppContext);
+
   return (
-    <header className="border-b border-slate-200 mb-4 flex items-center">
-      <Link to="/" className="font-bold font-vanilla text-vanilla-pink">
+    <header className="border-b border-slate-200 mb-4 flex items-center py-4 px-10 justify-between ">
+      {/* Logo */}
+      <Link to="/" className="font-bold font-vanilla text-vanilla-pink text-2xl">
         Covid Solidarity 'syd'
       </Link>
 
-      <NavigationMenu className="mx-auto">
+      {/* Navigation links */}
+      <NavigationMenu className="">
         <NavigationMenuList>
+          {links.map((link) => (
+            <LinkItems link={link} key={link.label} />
+          ))}
+
           <NavigationMenuItem>
-            <Link to="/" className={linkStyle}>
-              Home
-            </Link>
-          </NavigationMenuItem>
-          {/* <NavigationMenuItem>
-            <NavigationMenuTrigger>Item 1</NavigationMenuTrigger>
+            <NavigationMenuTrigger>
+              <IoSettingsSharp />
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <NavigationMenuLink>Link</NavigationMenuLink>
+              <div className="flex flex-col">
+                {loggedIn && (
+                  <Link to={"/admin"} className={linkStyle}>
+                    Admin Login
+                  </Link>
+                )}
+              </div>
             </NavigationMenuContent>
-          </NavigationMenuItem> */}
-
-          <NavigationMenuItem>
-            <Link to="/about" className={linkStyle}>
-              About
-            </Link>
           </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <Link to="/news" className={linkStyle}>
-              News
-            </Link>
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <Link to="/news" className={linkStyle}>
-              News
-            </Link>
-          </NavigationMenuItem>
-          {/*  */}
         </NavigationMenuList>
       </NavigationMenu>
     </header>
+  );
+}
+
+function LinkItems({ link }) {
+  const { label, href } = link;
+  return (
+    <NavigationMenuItem>
+      <Link to={href} className={cn(linkStyle, "text-base")}>
+        {label}
+      </Link>
+    </NavigationMenuItem>
   );
 }
 
