@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import News from "./pages/News";
 import Venues from "./pages/Venues";
-import VenueDetail from "./pages/VenueDetail";
+// import VenueDetail from "./pages/VenueDetail";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 
@@ -24,7 +24,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/news" element={<News />} />
             <Route path="/venues" element={<Venues />} />
-            <Route path="/venues/:venueId" element={<VenueDetail />} />
+            {/* <Route path="/venues/:venueId" element={<VenueDetail />} /> */}
             <Route path="/resources" element={<Resources />} />
             <Route path="/contact" element={<Contact />} />
 
