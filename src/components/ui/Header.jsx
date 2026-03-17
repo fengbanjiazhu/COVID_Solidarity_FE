@@ -10,8 +10,11 @@ import {
 import { cn } from "@/lib/utils";
 import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
-import { IoSettingsSharp } from "react-icons/io5";
+
 import { Link } from "react-router-dom";
+import DarkModeSwitch from "./DarkModeSwitch";
+
+import { IoSettingsSharp } from "react-icons/io5";
 
 const linkStyle = navigationMenuTriggerStyle();
 
@@ -65,13 +68,17 @@ function Header() {
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <div className="flex flex-col">
-                {loggedIn && (
+                {!loggedIn && (
                   <Link to={"/admin"} className={linkStyle}>
                     Admin Login
                   </Link>
                 )}
               </div>
             </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <DarkModeSwitch />
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
