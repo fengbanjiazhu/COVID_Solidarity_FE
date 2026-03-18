@@ -12,7 +12,7 @@ function Layout({ props }) {
       <main className="px-10 block md:flex min-h-[90vh] w-full md:w-[100vw] relative">
         <Outlet />
       </main>
-      <Toaster />
+      <Toaster position="top-center" />
       <Footer />
     </ThemeProvider>
   );

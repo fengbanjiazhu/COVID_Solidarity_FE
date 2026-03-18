@@ -30,22 +30,16 @@ function ContactInfo() {
         </ItemActions>
       </Item>
 
-      <Item
-        variant="outline"
-        size="sm"
-        render={
-          <a href="#">
-            <ItemContent>
-              <ItemTitle>Visit us on instagram:</ItemTitle>
-            </ItemContent>
-            <ItemActions>
-              <Button onClick={jumpToIns} variant="outline" size="sm">
-                <FaInstagram />
-              </Button>
-            </ItemActions>
-          </a>
-        }
-      />
+      <Item variant="outline" className="mb-4">
+        <ItemContent>
+          <ItemTitle>Visit us on instagram:</ItemTitle>
+        </ItemContent>
+        <ItemActions>
+          <Button onClick={jumpToIns} variant="outline" size="sm">
+            <FaInstagram />
+          </Button>
+        </ItemActions>
+      </Item>
     </div>
   );
 }
